@@ -6,7 +6,8 @@ const config = {
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}'
+    './src/**/*.{ts,tsx}',
+    './views/**/*.{ts,tsx}'
   ],
   prefix: '',
   theme: {
@@ -51,6 +52,9 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        brand: {
+          DEFAULT: 'hsl(var(--brand))'
         }
       },
       borderRadius: {

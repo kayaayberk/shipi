@@ -1,11 +1,9 @@
 import './globals.css'
 
+import { NavigationDesktop } from '@/components/NavigationBar/navigation-desktop'
+import { GeistSans } from 'geist/font/sans'
 import { Providers } from './providers'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { NavigationBar } from '@/components/NavigationBar/navigation-bar'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,10 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers enableSystem attribute='class' defaultTheme='dark' disableTransitionOnChange>
-
-          <NavigationBar />
+      <body className={GeistSans.className} suppressHydrationWarning>
+        <Providers>
+          <NavigationDesktop />
 
           {children}
         </Providers>
