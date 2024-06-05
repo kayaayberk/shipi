@@ -5,7 +5,9 @@ export const env = createEnv({
   skipValidation:
     process.env.NODE_ENV !== 'production' || process.env.SKIP_ENV_VALIDATION === 'true',
   server: {
+    STRIPE_SECRET_KEY_LIVE: z.string(),
     STRIPE_SECRET_KEY: z.string(),
+
     STRIPE_WEBHOOK_SECRET: z.string(),
 
     POSTGRES_PASSWORD: z.string(),
@@ -19,14 +21,22 @@ export const env = createEnv({
     SUPABASE_ANON_KEY: z.string(),
     SUPABASE_URL: z.string(),
     SUPABASE_SERVICE_ROLE_KEY: z.string(),
-    SUPABASE_JWT_SECRET: z.string()
+    SUPABASE_JWT_SECRET: z.string(),
+
+    AUTH_SECRET: z.string(),
+
+    RESEND_API_KEY: z.string(),
+    RESEND_FROM: z.string()
   },
   client: {
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE: z.string(),
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
-    NEXT_PUBLIC_SUPABASE_URL: z.string()
+    NEXT_PUBLIC_SUPABASE_URL: z.string(),
+    NEXT_PUBLIC_SITE_URL: z.string()
   },
   runtimeEnv: {
+    STRIPE_SECRET_KEY_LIVE: process.env.STRIPE_SECRET_KEY_LIVE,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
 
@@ -45,6 +55,14 @@ export const env = createEnv({
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
 
-    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    AUTH_SECRET: process.env.AUTH_SECRET,
+
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE,
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    RESEND_FROM: process.env.RESEND_FROM
   }
 })
