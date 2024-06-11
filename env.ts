@@ -21,12 +21,7 @@ export const env = createEnv({
     SUPABASE_ANON_KEY: z.string(),
     SUPABASE_URL: z.string(),
     SUPABASE_SERVICE_ROLE_KEY: z.string(),
-    SUPABASE_JWT_SECRET: z.string(),
-
-    AUTH_SECRET: z.string(),
-
-    RESEND_API_KEY: z.string(),
-    RESEND_FROM: z.string()
+    SUPABASE_JWT_SECRET: z.string()
   },
   client: {
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE: z.string(),
@@ -55,14 +50,9 @@ export const env = createEnv({
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
 
-    AUTH_SECRET: process.env.AUTH_SECRET,
-
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY_LIVE,
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-
-    RESEND_API_KEY: process.env.RESEND_API_KEY,
-    RESEND_FROM: process.env.RESEND_FROM
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL
   }
 })

@@ -1,9 +1,10 @@
 import './globals.css'
 
-import { NavigationDesktop } from '@/components/NavigationBar/navigation-desktop'
-import { GeistSans } from 'geist/font/sans'
-import { Providers } from './providers'
 import type { Metadata } from 'next'
+import { Providers } from './providers'
+import { GeistSans } from 'geist/font/sans'
+import { Toaster } from '@/components/ui/sonner'
+import NavigationDesktop from '@/components/NavigationBar/navigation-desktop'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,14 +17,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
-      <body className={GeistSans.className} suppressHydrationWarning>
-        <Providers>
+    <Providers>
+      <html lang='en' suppressHydrationWarning>
+        <body className={GeistSans.className} suppressHydrationWarning>
           <NavigationDesktop />
 
           {children}
-        </Providers>
-      </body>
-    </html>
+          <Toaster />
+        </body>
+      </html>
+    </Providers>
   )
 }

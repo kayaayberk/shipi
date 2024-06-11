@@ -1,8 +1,9 @@
-import HeroSection from "@/views/HeroSection/hero-section";
-import Image from "next/image";
+import HeroSection from '@/views/HeroSection/hero-section'
 
-export default function Home() {
+export default async function Home() {
   return (
-    <HeroSection />
-  );
+    <>
+      <HeroSection />
+    </>
+  )
 }
