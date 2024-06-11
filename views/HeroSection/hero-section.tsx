@@ -2,7 +2,9 @@
 import { Icons } from '@/components/Icons/icons'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
+import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
