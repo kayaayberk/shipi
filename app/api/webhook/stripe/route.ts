@@ -1,3 +1,4 @@
+import { webhookEmailUserCreate } from '@/app/login/actions'
 import { env } from '@/env'
 import { stripe } from '@/lib/stripe/config'
 import {
@@ -8,6 +9,7 @@ import {
   upsertPriceRecord,
   upsertProductRecord
 } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 import { Tables } from '@/types_db'
 import Error from 'next/error'
 import Stripe from 'stripe'
@@ -31,6 +33,8 @@ export async function POST(req: Request) {
   const webhookSecret = env.STRIPE_WEBHOOK_SECRET
 
   let event: Stripe.Event
+
+  const supabase = createClient()
 
   try {
     event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
@@ -65,22 +69,49 @@ export async function POST(req: Request) {
           const session = (await stripe.checkout.sessions.retrieve(event.data.object.id, {
             expand: ['line_items', 'customer']
           })) as Stripe.Checkout.Session
-          console.log('Session from webhook:', session)
 
           const customerRetrieve = session.customer as Stripe.Customer
-          
+
           const customerId = customerRetrieve.id
 
           const customer = session.customer as Stripe.Customer
+
+          const customerEmail = customer.email as string
 
           const priceId = session.line_items?.data[0].price?.id
 
           if (!customer.email) return new Response('No customer email found', { status: 400 })
 
-          const { data, error } = await supabaseAdmin.auth.signInWithOtp({ email: 'kayaayberk98@gmail.com' })
+          // send and email to the customer with a magic link to sign in
+          // this does not assign customer properties only authenticates them
+          await webhookEmailUserCreate(customerEmail, customer.name ?? '')
 
-          console.log('User from webhook:', data)
-          console.log('Error from webhook:', error)
+          const { data: userData, error: userError } = await supabase
+            .from('users')
+            .select('*')
+            .eq('email', customerEmail)
+            .maybeSingle()
+
+          if (!userData || userError) {
+            return new Response('User not found', { status: 400 })
+          }
+          console.log('User data:', userData)
+
+          const { data, error } = await supabase
+            .from('users')
+            .update({
+              stripe_customer_id: customerId,
+              full_name: customer.name,
+              has_access: false,
+              price_id: priceId
+            })
+            .eq('æd', userData.id)
+
+          console.log('User updated:', data, 'Error from updating', error)
+
+          if (error) {
+            return new Response('Error fetching user', { status: 400 })
+          }
 
           break
         default:

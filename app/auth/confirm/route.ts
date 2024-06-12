@@ -16,13 +16,32 @@ export async function GET(request: NextRequest) {
   if (token_hash && type) {
     const supabase = createClient()
 
-    // Burası undefined çöz
-    const { error } = await supabase.auth.verifyOtp({
-      type,
-      token_hash
-    })
+    const { error } = await supabase.auth.verifyOtp({ type, token_hash }) //=>
+    //                                                        ^?
     if (!error) {
       redirectTo.searchParams.delete('next')
+      return NextResponse.redirect(redirectTo)
+    }
+
+    const {
+      data: { user }
+    } = await supabase.auth.getUser()
+
+    if (user) {
+      const { data, error: updateError } = await supabase
+        .from('users')
+        .update({ has_access: true })
+        .eq('email', user.email as string)
+
+      if (!updateError) {
+        redirectTo.pathname = '/login?message=You now have access to the product.'
+        console.log(data)
+        return NextResponse.redirect(redirectTo)
+      }
+      console.log(updateError)
+    } else {
+      // return the user to an error page with some instructions
+      redirectTo.pathname = '/login?message=Could not give access to the product.'
       return NextResponse.redirect(redirectTo)
     }
   }
