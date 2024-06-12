@@ -16,7 +16,6 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useSearchParams } from 'next/navigation'
 import { login } from '@/app/login/actions'
-import { toast } from 'sonner'
 
 export const formSchema = z.object({
   email: z.string().email().min(3).max(64)
@@ -46,7 +45,7 @@ export default function EmailSignin() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 w-full'>
         {formFields.map((field) => (
           <FormField
             key={field.name}
@@ -64,13 +63,10 @@ export default function EmailSignin() {
             )}
           />
         ))}
-        <Button type='submit'>Submit</Button>
+        <Button className='w-full' type='submit'>
+          Sign In
+        </Button>
       </form>
     </Form>
-    // <form onSubmit={handleSubmit}>
-    //   <input type='email' placeholder='Email' />
-    //   <input type='password' placeholder='Password' />
-    //   <Button type='submit'>Sign In</Button>
-    // </form>
   )
 }

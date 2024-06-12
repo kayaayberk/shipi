@@ -9,6 +9,7 @@ import { AspectRatio } from '../ui/aspect-ratio'
 import { User } from '@supabase/supabase-js'
 import { Icons } from '../Icons/icons'
 import { ArrowUp } from 'lucide-react'
+import { signOut } from '@/app/login/actions'
 
 const NavItems = [
   {
@@ -26,10 +27,6 @@ const NavItems = [
   {
     name: 'FAQ',
     link: '/#faq'
-  },
-  {
-    name: 'Sign Up',
-    link: '/login'
   }
 ]
 
@@ -53,19 +50,29 @@ export default function NavigationLinks({ user }: NavigationLinksProps) {
           </AspectRatio>
         </div>
       </Link>
-      {NavItems.map(
-        (item, index) =>
-          item.name !== 'Sign Up' &&
-          (user && (
-            <Button key={item.name + index} asChild variant='ghost'>
-              <Link
-                href={item.link}
-                className='text-sm tracking-wide font-normal hover:outline-brand hover:bg-transparent hover:outline'
-              >
-                {item.name}
-              </Link>
-            </Button>
-          ))
+      {NavItems.map((item, index) => (
+        <Button key={item.name + index} asChild variant='ghost'>
+          <Link
+            href={item.link}
+            className='text-sm tracking-wide font-normal hover:outline-brand hover:bg-transparent hover:outline'
+          >
+            {item.name}
+          </Link>
+        </Button>
+      ))}
+      {user ? (
+        <Button onClick={async () => signOut()} variant='ghost' className='text-sm tracking-wide font-normal hover:outline-brand hover:bg-transparent hover:outline'>
+          Sign Out
+        </Button>
+      ) : (
+        <Button asChild variant='ghost'>
+          <Link
+            href='/login'
+            className='text-sm tracking-wide font-normal hover:outline-brand hover:bg-transparent hover:outline'
+          >
+            Log In
+          </Link>
+        </Button>
       )}
     </>
   )
