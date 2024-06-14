@@ -20,3 +20,9 @@ export const logger = {
     }
   }
 }
+
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+export const runAsyncFnWithoutBlocking = (fn: (...args: any) => Promise<any>) => {
+  fn()
+}

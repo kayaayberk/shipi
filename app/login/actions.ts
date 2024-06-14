@@ -5,11 +5,12 @@ import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import { type Provider } from '@supabase/supabase-js'
+import { supabaseAdmin } from '@/lib/supabase/admin'
 
 export async function webhookEmailUserCreate(email: string, full_name?: string) {
   const supabase = createClient()
 
-  const { data, error } = await supabase.auth.signInWithOtp({
+  const { error } = await supabase.auth.signInWithOtp({
     email: email,
     options: {
       data: {
@@ -50,15 +51,21 @@ export async function signInWithOAuth(provider: Provider) {
   return redirect(data.url)
 }
 
-export async function login(email: string, full_name?: string) {
+export async function login(email: string) {
   const supabase = createClient()
 
-  const { data, error } = await supabase.auth.signInWithOtp({
+  const { data } = await supabaseAdmin.from('users').select('*').eq('email', email).maybeSingle()
+
+  if (!data) {
+    throw new Error('User not found')
+  }
+
+  const { error } = await supabase.auth.signInWithOtp({
     email: email,
     options: {
       shouldCreateUser: false,
       data: {
-        full_name: full_name,
+        full_name: data.email,
         logo_url: 'https://i.imghippo.com/files/fVeck1718201224.png',
         user_logo_url: 'https://i.imghippo.com/files/s4FX71718201279.png',
         arrow_url: 'https://i.imghippo.com/files/7OmS51718201306.png',
@@ -86,5 +93,3 @@ export async function signOut() {
 
   redirect('/login')
 }
-
-export const updateUserBeforeLogin = async (email: string, full_name: string) => {}
