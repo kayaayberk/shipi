@@ -21,15 +21,10 @@ export async function webhookEmailUserCreate(email: string, full_name?: string) 
       }
     }
   })
-  console.log('DATA WEBHOOK USER CREATE', data)
-  console.log('ERROR WEBHOOK USER CREATE', error)
 
   if (error) {
     redirect('/error')
   }
-
-  revalidatePath('/', 'layout')
-  redirect('/')
 }
 
 export async function signInWithOAuth(provider: Provider) {
@@ -55,13 +50,13 @@ export async function signInWithOAuth(provider: Provider) {
   return redirect(data.url)
 }
 
-
 export async function login(email: string, full_name?: string) {
   const supabase = createClient()
 
   const { data, error } = await supabase.auth.signInWithOtp({
     email: email,
     options: {
+      shouldCreateUser: false,
       data: {
         full_name: full_name,
         logo_url: 'https://i.imghippo.com/files/fVeck1718201224.png',
@@ -71,8 +66,6 @@ export async function login(email: string, full_name?: string) {
       }
     }
   })
-  console.log(data)
-  console.log(error)
 
   if (error) {
     redirect('/error')
