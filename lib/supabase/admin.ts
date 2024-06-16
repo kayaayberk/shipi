@@ -1,9 +1,9 @@
-import { createClient } from '@supabase/supabase-js'
-import type { Database, Tables } from '@/types_db'
-import { stripe } from '../stripe/config'
-import Stripe from 'stripe'
 import { env } from '@/env'
-import { getEnvVar } from '../helpers'
+import Stripe from 'stripe'
+import { stripe } from '../stripe/config'
+import type { Database, Tables } from '@/types_db'
+import { createClient } from '@supabase/supabase-js'
+import { createClient as createCheckerClient } from '@/lib/supabase/server'
 
 type Product = Tables<'products'>
 type Price = Tables<'prices'>
@@ -113,6 +113,24 @@ const signInWithMagicLink = async (email: string) => {
 
   console.log(`Magic link sent to: ${email}`)
   return data || error
+}
+
+export async function hasAccess(email: string | undefined): Promise<boolean> {
+  const supabase = createCheckerClient()
+  if (!email) return false
+
+  const { data: { user } } = await supabase.auth.getUser()
+
+  const { data, error } = await supabaseAdmin.from('users').select('*').eq('email', email).maybeSingle()
+
+  if (error) {
+    console.error('Error fetching user data:', error)
+    return false
+  }
+
+  if (data?.has_access === true) return true
+
+  return false
 }
 
 export {
