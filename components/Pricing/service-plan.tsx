@@ -45,7 +45,7 @@ export default function ServicePlan() {
         </div>
       </div>
       <div className='flex w-full flex-col lg:w-1/2'>
-        <Button className='mx-auto w-full' variant='outline' size='lg' asChild>
+        <Button className='mx-auto w-full rounded-xl py-5' variant='outline' size='lg' asChild>
           <Link href='#'>Book a call</Link>
         </Button>
         <Separator text='or' />
