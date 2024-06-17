@@ -70,11 +70,21 @@ const config = {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' }
+        },
+        'slide-to-left': {
+          '0%': { transform: 'translateX(15px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        'slide-to-right': {
+          '0%': { transform: 'translateX(-15px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'slide-to-left': 'slide-to-left 0.3s ease-in-out forwards',
+        'slide-to-right': 'slide-to-right 0.3s ease-in-out forwards'
       },
       maxWidth: {
         'container-lg': '1440px',
