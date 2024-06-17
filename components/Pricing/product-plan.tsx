@@ -30,7 +30,7 @@ export default function ProductPlan({ plan }: { plan: ProductPlanProps }) {
       )}
       <div className='flex items-center justify-between text-right text-neutral-400'>
         <h1 className='text-4xl font-semibold text-brand'>{plan.name}</h1>
-        <div className='space-x-1'>
+        <div className='space-x-1 whitespace-nowrap'>
           <span className='text-lg line-through'>${plan.normalPrice}</span>{' '}
           <span className='text-5xl font-extrabold text-neutral-200'>${plan.discountedPrice}</span>
           <span className='text-xs'>USD</span>

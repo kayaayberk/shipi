@@ -38,37 +38,42 @@ export default function NavigationLinks({ user }: NavigationLinksProps) {
   return (
     <>
       <Link href='/#' className='group rounded-md'>
-        <div className='w-20 rounded-md overflow-hidden'>
+        <div className='w-[70px] overflow-hidden rounded-md'>
           <AspectRatio ratio={16 / 7} className='flex items-center justify-center'>
             <Image
               fill
               src={MainLogo}
               alt='Shipi.fyi Logo'
-              className='group-hover:opacity-0 group-hover:scale-50 rounded-md object-cover p-1.5 group-hover:-translate-y-5 transition-all duration-200 ease-in-out'
+              className='rounded-md object-cover p-1.5 transition-all duration-200 ease-in-out group-hover:-translate-y-5 group-hover:scale-50 group-hover:opacity-0'
             />
-            <ArrowUp className='opacity-0 group-hover:opacity-100 group-hover:translate-y-0 text-brand transition-all translate-y-5 duration-200 ease-in-out' />
+            <ArrowUp className='translate-y-5 text-brand opacity-0 transition-all duration-200 ease-in-out group-hover:translate-y-0 group-hover:opacity-100' />
           </AspectRatio>
         </div>
       </Link>
       {NavItems.map((item, index) => (
-        <Button key={item.name + index} asChild variant='ghost'>
+        <Button size={'sm'} key={item.name + index} asChild variant='ghost'>
           <Link
             href={item.link}
-            className='text-sm tracking-wide font-normal hover:outline-brand hover:bg-transparent hover:outline'
+            className='p-0.5 h-min font-normal tracking-wide hover:bg-transparent text-neutral-400 transition-colors duration-200'
           >
             {item.name}
           </Link>
         </Button>
       ))}
       {user ? (
-        <Button onClick={async () => signOut()} variant='ghost' className='text-sm tracking-wide font-normal hover:outline-brand hover:bg-transparent hover:outline'>
+        <Button
+          size={'sm'}
+          onClick={async () => signOut()}
+          variant='ghost'
+          className='h-min p-0.5 font-normal tracking-wide hover:bg-transparent'
+        >
           Sign Out
         </Button>
       ) : (
-        <Button asChild variant='ghost'>
+        <Button size={'sm'} asChild variant='ghost'>
           <Link
             href='/login'
-            className='text-sm tracking-wide font-normal hover:outline-brand hover:bg-transparent hover:outline'
+            className='h-min p-0.5 font-normal tracking-wide hover:bg-transparent'
           >
             Log In
           </Link>
