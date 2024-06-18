@@ -9,15 +9,18 @@ import Image from 'next/image'
 export default function HeroSection() {
   return (
     <div className='mx-auto flex w-full justify-center bg-gradient-to-br from-[#141414] via-[#141414] to-[#B4EA51] px-10 lg:flex-row'>
-      <div className='flex max-w-container-lg flex-col items-center justify-between gap-5 lg:flex-row'>
+      <div className='flex max-w-container-md flex-col items-center justify-between gap-5 lg:flex-row'>
         <div className='mx-auto flex flex-col items-center justify-start gap-16 py-20 lg:items-start'>
           <HeroHeader />
 
-          <BuyButton className='w-max' paymentLink='https://buy.stripe.com/test_8wMcQP3n2gQ3g3S3cc' />
+          <BuyButton
+            className='w-max'
+            paymentLink='https://buy.stripe.com/test_8wMcQP3n2gQ3g3S3cc'
+          />
 
           <Reviews />
         </div>
-        <div className='flex w-full gap-7 py-10 px-0 md:px-20 lg:px-0'>
+        <div className='hidden lg:flex w-full gap-7 px-0 py-10 md:px-20 lg:px-0'>
           <Image
             src={HeaderImage}
             alt='Tech Stack'

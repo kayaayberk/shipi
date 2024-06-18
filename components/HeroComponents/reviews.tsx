@@ -26,7 +26,7 @@ const AvatarImages = [
 
 export default function Reviews() {
   return (
-    <div className='flex w-full items-center gap-10'>
+    <div className='flex flex-col w-full items-center lg:items-start gap-3'>
       <div className='flex max-w-min -space-x-6 rtl:space-x-reverse'>
         {AvatarImages.map((avatar, index) => (
           <Avatar className='h-12 w-12 border' key={index + avatar.src}>
@@ -41,10 +41,10 @@ export default function Reviews() {
           </Avatar>
         ))}
       </div>
-      <div className='flex flex-col gap-2'>
-        <div className='flex'>
+      <div className='flex flex-col gap-4 items-center lg:items-start'>
+        <div className='flex gap-1'>
           {Array.from({ length: 5 }).map((_, index) => (
-            <Icons.Star key={index} className='size-5' fill='white' />
+            <Icons.Star key={index} className='size-6 text-[#EAB30B]' fill='#EAB30B'  />
           ))}
         </div>
         <div>
