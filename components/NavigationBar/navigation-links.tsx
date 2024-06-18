@@ -10,25 +10,7 @@ import { User } from '@supabase/supabase-js'
 import { Icons } from '../Icons/icons'
 import { ArrowUp } from 'lucide-react'
 import { signOut } from '@/app/login/actions'
-
-const NavItems = [
-  {
-    name: 'Pricing',
-    link: '/#pricing'
-  },
-  {
-    name: 'Wall of Love',
-    link: '/#wol'
-  },
-  {
-    name: 'What is Shipi.fyi?',
-    link: '/#wtf'
-  },
-  {
-    name: 'FAQ',
-    link: '/#faq'
-  }
-]
+import { NavItems } from '@/lib/constants'
 
 type NavigationLinksProps = {
   user: User | null
@@ -54,7 +36,7 @@ export default function NavigationLinks({ user }: NavigationLinksProps) {
         <Button size={'sm'} key={item.name + index} asChild variant='ghost'>
           <Link
             href={item.link}
-            className='p-0.5 h-min font-normal tracking-wide hover:bg-transparent text-neutral-400 transition-colors duration-200'
+            className='h-min p-0.5 font-normal tracking-wide text-neutral-400 transition-colors duration-200 hover:bg-transparent'
           >
             {item.name}
           </Link>
@@ -65,7 +47,7 @@ export default function NavigationLinks({ user }: NavigationLinksProps) {
           size={'sm'}
           onClick={async () => signOut()}
           variant='ghost'
-          className='h-min p-0.5 font-normal tracking-wide hover:bg-transparent'
+          className='h-min p-0.5 font-normal tracking-wide hover:bg-transparent text-neutral-400'
         >
           Sign Out
         </Button>
@@ -73,7 +55,7 @@ export default function NavigationLinks({ user }: NavigationLinksProps) {
         <Button size={'sm'} asChild variant='ghost'>
           <Link
             href='/login'
-            className='h-min p-0.5 font-normal tracking-wide hover:bg-transparent'
+            className='h-min p-0.5 font-normal tracking-wide hover:bg-transparent text-neutral-400'
           >
             Log In
           </Link>
