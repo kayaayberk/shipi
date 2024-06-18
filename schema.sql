@@ -95,3 +95,14 @@ alter table prices
   enable row level security;
 create policy "Allow public read-only access." on prices
   for select using (true);
+
+
+  create table public.leads (
+  id uuid default gen_random_uuid(),
+  email text,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+
+  primary key (id)
+);
+
+alter table public.leads enable row level security;
