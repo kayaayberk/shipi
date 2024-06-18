@@ -38,7 +38,7 @@ export default function ServicePlan() {
               >
                 here <ArrowRight size={16} className='-rotate-45' />
               </Link>
-              Please ask for a quote if you have a different something in mind.
+              Please ask for a quote if you have something different in mind.
             </li>
             <li>Customized Shopify stores might add additional fees.</li>
           </ol>
