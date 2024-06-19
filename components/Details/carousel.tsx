@@ -61,7 +61,7 @@ export default function DetailCarousel({ className, children }: ImageCarouselnPr
         setApi={setApi}
         className='relative flex w-full items-center justify-center border-t pt-5'
       >
-        <CarouselContent className='m-0 rounded-xl max-w-container-sm'>
+        <CarouselContent className='max-w-container-sm'>
           {DETAILS.map((detail, index) => (
             <CarouselItem className='flex items-start justify-center gap-4' key={detail.name}>
               <div className='space-y-4 basis-1/2'>
@@ -70,9 +70,9 @@ export default function DetailCarousel({ className, children }: ImageCarouselnPr
                   {detail.options.map((option, index) => (
                     <li
                       key={option}
-                      className='flex items-center gap-1 tracking-wide text-neutral-400'
+                      className='flex items-center gap-2 tracking-wide text-neutral-400 text-sm'
                     >
-                      <Check className='text-brand' />
+                      <Check size={18} className='text-brand shrink-0' />
                       {option}
                     </li>
                   ))}
