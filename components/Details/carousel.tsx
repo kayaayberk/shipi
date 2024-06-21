@@ -2,10 +2,10 @@
 
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import { Check } from 'lucide-react'
+import { DETAILS } from '@/lib/constants'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { DETAILS } from '@/lib/constants'
-import { Check } from 'lucide-react'
 
 interface ImageCarouselnProps {
   className?: string
@@ -64,23 +64,23 @@ export default function DetailCarousel({ className, children }: ImageCarouselnPr
         <CarouselContent className='max-w-container-sm'>
           {DETAILS.map((detail, index) => (
             <CarouselItem className='flex items-start justify-center gap-4' key={detail.name}>
-              <div className='space-y-4 basis-1/2'>
+              <div className='basis-1/2 space-y-4'>
                 <h1 className='text-lg font-semibold text-neutral-400'>{detail.name}</h1>
                 <ul className='flex flex-col gap-2'>
                   {detail.options.map((option, index) => (
                     <li
-                      key={option}
-                      className='flex items-center gap-2 tracking-wide text-neutral-400 text-sm'
+                      key={option + index}
+                      className='flex items-center gap-2 text-sm tracking-wide text-neutral-400'
                     >
-                      <Check size={18} className='text-brand shrink-0' />
+                      <Check size={18} className='shrink-0 text-brand' />
                       {option}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className='space-y-5 basis-1/4'>
+              <div className='basis-1/4 space-y-5'>
                 <Image src={detail.image} alt={detail.name} width={100} height={100} />
-                <p className='text-sm w-full text-neutral-400'>{detail.description}</p>
+                <p className='w-full text-sm text-neutral-400'>{detail.description}</p>
               </div>
             </CarouselItem>
           ))}
