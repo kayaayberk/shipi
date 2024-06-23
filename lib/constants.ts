@@ -1,6 +1,11 @@
-import { Computer, Search } from 'lucide-react'
+import { BarChart, BarChart3, Computer, Database, Search, SearchCheck } from 'lucide-react'
 import Shoify from '@/public/TechIcons/shopify.svg'
 import Meili from '@/public/TechIcons/meilisearch.svg'
+import Supabase from '@/public/TechIcons/supabase.svg'
+import Middleware from '@/public/TechIcons/middleware.svg'
+import Google from '@/public/TechIcons/google.svg'
+import Vercel from '@/public/TechIcons/vercel.svg'
+
 export const servicePlan = {
   name: 'Service Plan',
   price: 999,
@@ -35,24 +40,65 @@ export const NavItems = [
 
 export const DETAILS = [
   {
-    name: 'E-COMMERCE ENGINE',
+    name: 'E-COMMERCE',
     icon: Computer,
     options: [
-      'Manage customers, products, orders, and inventory',
+      'Customers, products, and inventory',
       'Secure Payment gateway',
       'Interaction through GraphQl API',
-      'Flexible theme customization',
-      'SEO ooptimized',
-      'Product suggestions'
+      'Flexible UI customization',
+      'SEO optimized',
+      'Product suggestions',
+      'Many more...'
     ],
     image: Shoify,
-    description:
-      'Shopify is a complete commerce platform that lets you start, grow, and manage a business.'
+    description: 'With Shopify'
   },
   {
-    name: 'SEARCH ENGINE',
+    name: 'SEARCH',
     icon: Search,
     options: ['AI powered Vector search', 'Faceted search', 'Fast search results', 'mul'],
-    image: Meili
+    image: Meili,
+    description: 'With MeiliSearch'
+  },
+  {
+    name: 'DATABASE',
+    icon: Database,
+    options: [
+      'Fast and reliable',
+      'Scalable',
+      'Secure',
+      'Real-time data',
+      'Product records',
+      'Many more...'
+    ],
+    image: Supabase,
+    description: 'With Supabase'
+  },
+  {
+    name: 'SEO',
+    icon: SearchCheck,
+    options: [
+      'Bloom filters',
+      'Highly Scalable SEO Redirects',
+      'Bloom filters',
+      'Fast indexing',
+      'High ranking'
+    ],
+    image: Middleware,
+    description: 'With Bloom Filters'
+  },
+  {
+    name: 'ANALYTICS',
+    icon: BarChart3,
+    options: [
+      'Real-time analytics',
+      'Customized reports',
+      'Data visualization',
+      'Data insights',
+      'Many more...'
+    ],
+    image: [Google, Vercel],
+    description: 'With Google & Vercel'
   }
 ]

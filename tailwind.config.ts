@@ -90,7 +90,8 @@ const config = {
         'container-lg': '1440px',
         'container-md': '1280px',
         'container-sm': '1024px',
-        'container-xs': '796px'
+        'container-xs': '796px',
+        'container-xxs': '500px'
       }
     }
   },
